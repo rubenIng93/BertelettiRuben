@@ -1,5 +1,6 @@
 package it.polito.tdp.simulatoreNBA.controller;
 	
+import it.polito.tdp.simulatoreNBA.model.Model;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -11,7 +12,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Table.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Table.fxml"));			
+			BorderPane root = loader.load();
+			
+			NBAController controller = loader.getController();
+			Model model = new Model();
+			
+			controller.setModel(model);
+			
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);

@@ -2,10 +2,15 @@ package it.polito.tdp.simulatoreNBA.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import it.polito.tdp.simulatoreNBA.model.IdTeam;
+import it.polito.tdp.simulatoreNBA.model.Model;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 
 public class NBAController {
+	
+	private Model model;
 
     @FXML
     private ResourceBundle resources;
@@ -14,52 +19,52 @@ public class NBAController {
     private URL location;
 
     @FXML
-    private ComboBox<?> cmbBoxWest1;
+    private ComboBox<IdTeam> cmbBoxWest1;
 
     @FXML
-    private ComboBox<?> cmbBoxWest8;
+    private ComboBox<IdTeam> cmbBoxWest8;
 
     @FXML
-    private ComboBox<?> cmbBoxWest4;
+    private ComboBox<IdTeam> cmbBoxWest4;
 
     @FXML
-    private ComboBox<?> cmbBoxWest5;
+    private ComboBox<IdTeam> cmbBoxWest5;
 
     @FXML
-    private ComboBox<?> cmbBoxWest3;
+    private ComboBox<IdTeam> cmbBoxWest3;
 
     @FXML
-    private ComboBox<?> cmbBoxWest6;
+    private ComboBox<IdTeam> cmbBoxWest6;
 
     @FXML
-    private ComboBox<?> cmbBoxWest2;
+    private ComboBox<IdTeam> cmbBoxWest2;
 
     @FXML
-    private ComboBox<?> cmbBoxWest7;
+    private ComboBox<IdTeam> cmbBoxWest7;
 
     @FXML
-    private ComboBox<?> cmbBoxEast1;
+    private ComboBox<IdTeam> cmbBoxEast1;
 
     @FXML
-    private ComboBox<?> cmbBoxEast8;
+    private ComboBox<IdTeam> cmbBoxEast8;
 
     @FXML
-    private ComboBox<?> cmbBoxEast4;
+    private ComboBox<IdTeam> cmbBoxEast4;
 
     @FXML
-    private ComboBox<?> cmbBoxEast5;
+    private ComboBox<IdTeam> cmbBoxEast5;
 
     @FXML
-    private ComboBox<?> cmbBoxEast3;
+    private ComboBox<IdTeam> cmbBoxEast3;
 
     @FXML
-    private ComboBox<?> cmbBoxEast6;
+    private ComboBox<IdTeam> cmbBoxEast6;
 
     @FXML
-    private ComboBox<?> cmbBoxEast2;
+    private ComboBox<IdTeam> cmbBoxEast2;
 
     @FXML
-    private ComboBox<?> cmbBoxEast7;
+    private ComboBox<IdTeam> cmbBoxEast7;
 
     @FXML
     void initialize() {
@@ -80,5 +85,25 @@ public class NBAController {
         assert cmbBoxEast2 != null : "fx:id=\"cmbBoxEast2\" was not injected: check your FXML file 'Table.fxml'.";
         assert cmbBoxEast7 != null : "fx:id=\"cmbBoxEast7\" was not injected: check your FXML file 'Table.fxml'.";
 
+    }
+    
+    public void setModel(Model model) {
+    	this.model = model;
+    	this.cmbBoxEast1.getItems().addAll(model.getEastTeams());
+    	this.cmbBoxEast2.getItems().addAll(model.getEastTeams());
+    	this.cmbBoxEast3.getItems().addAll(model.getEastTeams());
+    	this.cmbBoxEast4.getItems().addAll(model.getEastTeams());
+    	this.cmbBoxEast5.getItems().addAll(model.getEastTeams());
+    	this.cmbBoxEast6.getItems().addAll(model.getEastTeams());
+    	this.cmbBoxEast7.getItems().addAll(model.getEastTeams());
+    	this.cmbBoxEast8.getItems().addAll(model.getEastTeams());
+    	this.cmbBoxWest1.getItems().addAll(model.getWestTeams());
+    	this.cmbBoxWest2.getItems().addAll(model.getWestTeams());
+    	this.cmbBoxWest3.getItems().addAll(model.getWestTeams());
+    	this.cmbBoxWest4.getItems().addAll(model.getWestTeams());
+    	this.cmbBoxWest5.getItems().addAll(model.getWestTeams());
+    	this.cmbBoxWest6.getItems().addAll(model.getWestTeams());
+    	this.cmbBoxWest7.getItems().addAll(model.getWestTeams());
+    	this.cmbBoxWest8.getItems().addAll(model.getWestTeams());
     }
 }
