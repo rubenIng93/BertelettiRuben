@@ -77,9 +77,9 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </VBox>
-            <VBox spacing="5.0">
+            <VBox fx:id="vBoxWest" spacing="5.0">
                <children>
-                  <ComboBox fx:id="cmbBoxWest1" onAction="#doRemoveTeam" prefWidth="80.0">
+                  <ComboBox fx:id="cmbBoxWest1" prefWidth="80.0">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>

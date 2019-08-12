@@ -22,6 +22,7 @@ public class NBAController {
 
     @FXML
     private URL location;
+    
 
     @FXML
     private ComboBox<IdTeam> cmbBoxWest1;
@@ -99,6 +100,8 @@ public class NBAController {
 
     @FXML
     void doReset(ActionEvent event) {
+    	
+    	
 
     }
 
@@ -119,6 +122,54 @@ public class NBAController {
 
     @FXML
     void doSimula4East(ActionEvent event) {
+    	
+    	txtLog.clear();
+    	
+    	IdTeam team1 = cmbBoxEast1.getValue();
+    	IdTeam team2 = cmbBoxEast2.getValue();
+    	IdTeam team3 = cmbBoxEast3.getValue();
+    	IdTeam team4 = cmbBoxEast4.getValue();
+    	IdTeam team5 = cmbBoxEast5.getValue();
+    	IdTeam team6 = cmbBoxEast6.getValue();
+    	IdTeam team7 = cmbBoxEast7.getValue();
+    	IdTeam team8 = cmbBoxEast8.getValue();
+    	
+    	List<IdTeam> teams = new ArrayList<IdTeam>();
+    	teams.add(team1);
+    	teams.add(team2);
+    	teams.add(team3);
+    	teams.add(team4);
+    	teams.add(team5);
+    	teams.add(team6);
+    	teams.add(team7);
+    	teams.add(team8);
+    	
+    	/*
+    	 * Controllo input -> tutte le squadre selezionate
+    	 */
+    	for(IdTeam team : teams) {
+    		if(team == null) {
+    			txtLog.appendText("ERRORE SIMULAZIONE EAST: Selezionare tutti i teams partecipanti ai playoff per procedere.");
+    			return;
+    		}
+    	}
+    	
+    	/*
+    	 * Controllo input -> squadre tutte differenti
+    	 */
+    	for(IdTeam t1 : teams) {   
+    		int count = 0;
+    		for(IdTeam t2 : teams) {
+    			if(t1.equals(t2)) {
+    				count ++;
+    				if(count > 1) {
+    					txtLog.appendText("ERRORE SIMULAZIONE EAST: Assicurarsi di aver selezionato ogni squadra una sola volta.");
+        				return;
+    				}
+    			}
+    		}
+    		
+    	}
 
     }
 
@@ -156,6 +207,9 @@ public class NBAController {
     	teams.add(team7);
     	teams.add(team8);
     	
+    	/*
+    	 * Controllo input -> tutte le squadre selezionate
+    	 */
     	for(IdTeam team : teams) {
     		if(team == null) {
     			txtLog.appendText("ERRORE SIMULAZIONE WEST: Selezionare tutti i teams partecipanti ai playoff per procedere.");
@@ -163,12 +217,23 @@ public class NBAController {
     		}
     	}
     	
+    	/*
+    	 * Controllo input -> squadre tutte differenti
+    	 */
+    	for(IdTeam t1 : teams) {   
+    		int count = 0;
+    		for(IdTeam t2 : teams) {
+    			if(t1.equals(t2)) {
+    				count ++;
+    				if(count > 1) {
+    					txtLog.appendText("ERRORE SIMULAZIONE WEST: Assicurarsi di aver selezionato ogni squadra una sola volta.");
+        				return;
+    				}
+    			}
+    		}
+    		
+    	}
     	
-    	/*if(this.model.checkTeams(team1, team2, team3, team4, team5, team6, team7, team8).equals(1)){
-    		txtLog.appendText("ERRORE SIMULAZIONE WEST: Selezionare tutti i teams partecipanti ai playoff per procedere.\n"
-    				+ "Assicurarsi di non aver inserito due volte lo stesso team.");
-			return;
-    	}*/
     	
 
     }
