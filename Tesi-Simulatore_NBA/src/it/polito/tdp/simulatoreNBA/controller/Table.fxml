@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -11,8 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="473.0" prefWidth="792.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="it.polito.tdp.simulatoreNBA.controller.NBAController">
+<BorderPane prefHeight="473.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.simulatoreNBA.controller.NBAController">
    <left>
       <HBox BorderPane.alignment="CENTER">
          <children>
@@ -305,7 +306,7 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label prefHeight="60.0" prefWidth="60.0" text="WEST WINNER" textAlignment="CENTER" wrapText="true">
+                  <Label prefHeight="60.0" prefWidth="60.0" text="WEST WINNER" textAlignment="CENTER" textFill="#0105f5" wrapText="true">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -325,7 +326,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label prefHeight="60.0" prefWidth="60.0" text="EAST WINNER" textAlignment="CENTER" wrapText="true">
+                  <Label prefHeight="60.0" prefWidth="60.0" text="EAST WINNER" textAlignment="CENTER" textFill="#16c913" wrapText="true">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -346,4 +347,51 @@
          </children>
       </HBox>
    </center>
+   <bottom>
+      <HBox spacing="7.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btn4West" mnemonicParsing="false" onAction="#simula4West" prefHeight="60.0" prefWidth="80.0" text="QUARTI WEST" textAlignment="CENTER" textFill="#0105f5" wrapText="true">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="35.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <rotationAxis>
+                  <Point3D x="-10.0" z="1.0" />
+               </rotationAxis>
+            </Button>
+            <Button fx:id="btn2West" disable="true" mnemonicParsing="false" onAction="#doSimula2West" prefHeight="60.0" prefWidth="80.0" text="SEMIFINALI WEST" textAlignment="CENTER" textFill="#0105f5" wrapText="true">
+               <HBox.margin>
+                  <Insets bottom="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnFinalsWest" disable="true" mnemonicParsing="false" onAction="#doSimulaFinalsWest" prefHeight="60.0" prefWidth="80.0" text="FINALS WEST" textAlignment="CENTER" textFill="#0105f5" wrapText="true">
+               <HBox.margin>
+                  <Insets bottom="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnToFinals" disable="true" mnemonicParsing="false" onAction="#doGoToFinals" prefHeight="60.0" prefWidth="130.0" text="GO TO FINALS" textAlignment="CENTER" textFill="#ff2f00" wrapText="true">
+               <HBox.margin>
+                  <Insets bottom="15.0" left="25.0" right="25.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnFinalsEast" disable="true" mnemonicParsing="false" onAction="#doSimulaFinalsEast" prefHeight="60.0" prefWidth="80.0" text="FINALS EAST" textAlignment="CENTER" textFill="#16c913" wrapText="true">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btn2East" disable="true" mnemonicParsing="false" onAction="#doSimula2East" prefHeight="60.0" prefWidth="80.0" text="SEMIFINALI EAST" textAlignment="CENTER" textFill="#16c913" wrapText="true">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btn4East" mnemonicParsing="false" onAction="#doSimula4East" prefHeight="60.0" prefWidth="80.0" text="QUARTI EAST" textAlignment="CENTER" textFill="#16c913" wrapText="true">
+               <HBox.margin>
+                  <Insets bottom="5.0" right="35.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>

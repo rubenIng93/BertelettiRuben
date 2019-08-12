@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 
 import it.polito.tdp.simulatoreNBA.model.IdTeam;
 import it.polito.tdp.simulatoreNBA.model.Model;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 
@@ -65,6 +67,62 @@ public class NBAController {
 
     @FXML
     private ComboBox<IdTeam> cmbBoxEast7;
+    
+    @FXML
+    private Button btn4West;
+
+    @FXML
+    private Button btn2West;
+
+    @FXML
+    private Button btnFinalsWest;
+
+    @FXML
+    private Button btnToFinals;
+
+    @FXML
+    private Button btnFinalsEast;
+
+    @FXML
+    private Button btn2East;
+
+    @FXML
+    private Button btn4East;
+
+    @FXML
+    void doGoToFinals(ActionEvent event) {
+
+    }
+
+    @FXML
+    void doSimula2East(ActionEvent event) {
+
+    }
+
+    @FXML
+    void doSimula2West(ActionEvent event) {
+
+    }
+
+    @FXML
+    void doSimula4East(ActionEvent event) {
+
+    }
+
+    @FXML
+    void doSimulaFinalsEast(ActionEvent event) {
+
+    }
+
+    @FXML
+    void doSimulaFinalsWest(ActionEvent event) {
+
+    }
+
+    @FXML
+    void simula4West(ActionEvent event) {
+
+    }
 
     @FXML
     void initialize() {
@@ -84,6 +142,13 @@ public class NBAController {
         assert cmbBoxEast6 != null : "fx:id=\"cmbBoxEast6\" was not injected: check your FXML file 'Table.fxml'.";
         assert cmbBoxEast2 != null : "fx:id=\"cmbBoxEast2\" was not injected: check your FXML file 'Table.fxml'.";
         assert cmbBoxEast7 != null : "fx:id=\"cmbBoxEast7\" was not injected: check your FXML file 'Table.fxml'.";
+        assert btn4West != null : "fx:id=\"btn4West\" was not injected: check your FXML file 'Table.fxml'.";
+        assert btn2West != null : "fx:id=\"btn2West\" was not injected: check your FXML file 'Table.fxml'.";
+        assert btnFinalsWest != null : "fx:id=\"btnFinalsWest\" was not injected: check your FXML file 'Table.fxml'.";
+        assert btnToFinals != null : "fx:id=\"btnToFinals\" was not injected: check your FXML file 'Table.fxml'.";
+        assert btnFinalsEast != null : "fx:id=\"btnFinalsEast\" was not injected: check your FXML file 'Table.fxml'.";
+        assert btn2East != null : "fx:id=\"btn2East\" was not injected: check your FXML file 'Table.fxml'.";
+        assert btn4East != null : "fx:id=\"btn4East\" was not injected: check your FXML file 'Table.fxml'.";
 
     }
     
