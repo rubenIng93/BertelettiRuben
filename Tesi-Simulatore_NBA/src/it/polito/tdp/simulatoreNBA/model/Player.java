@@ -1,20 +1,43 @@
 package it.polito.tdp.simulatoreNBA.model;
 
-import java.util.List;
 
 public class Player {
 	
 	private String name;
 	private String team;
 	private Integer age;
-	private List<Stats> stats;
+	private Double points;
+	private Double blocks;
+	private Double steals;
+	private Double assists;
+	private Double rebounds;
+	private Double freeThrowsPercentage;
+	private Double freeThrowsAttempts;
+	private Double threePointsPercentage;
+	private Double threePointsAttempts;
+	private Double fieldGoalsPercentage;
+	private Double fieldGoalAttempts;
+	private Double minutePlayed;
 	
-	public Player(String name, String team, Integer age, List<Stats> stats) {
+	public Player(String name, String team, Integer age, Double points, Double blocks, Double steals, Double assists,
+			Double rebounds, Double freeThrowsPercentage, Double freeThrowsAttempts, Double threePointsPercentage,
+			Double threePointsAttempts, Double fieldGoalsPercentage, Double fieldGoalAttempts, Double minutePlayed) {
 		super();
 		this.name = name;
 		this.team = team;
 		this.age = age;
-		this.stats = stats;
+		this.points = points;
+		this.blocks = blocks;
+		this.steals = steals;
+		this.assists = assists;
+		this.rebounds = rebounds;
+		this.freeThrowsPercentage = freeThrowsPercentage;
+		this.freeThrowsAttempts = freeThrowsAttempts;
+		this.threePointsPercentage = threePointsPercentage;
+		this.threePointsAttempts = threePointsAttempts;
+		this.fieldGoalsPercentage = fieldGoalsPercentage;
+		this.fieldGoalAttempts = fieldGoalAttempts;
+		this.minutePlayed = minutePlayed;
 	}
 
 	public String getName() {
@@ -41,22 +64,107 @@ public class Player {
 		this.age = age;
 	}
 
-	public List<Stats> getStats() {
-		return stats;
+	public Double getPoints() {
+		return points;
 	}
 
-	public void setStats(List<Stats> stats) {
-		this.stats = stats;
+	public void setPoints(Double points) {
+		this.points = points;
+	}
+
+	public Double getBlocks() {
+		return blocks;
+	}
+
+	public void setBlocks(Double blocks) {
+		this.blocks = blocks;
+	}
+
+	public Double getSteals() {
+		return steals;
+	}
+
+	public void setSteals(Double steals) {
+		this.steals = steals;
+	}
+
+	public Double getAssists() {
+		return assists;
+	}
+
+	public void setAssists(Double assists) {
+		this.assists = assists;
+	}
+
+	public Double getRebounds() {
+		return rebounds;
+	}
+
+	public void setRebounds(Double rebounds) {
+		this.rebounds = rebounds;
+	}
+
+	public Double getFreeThrowsPercentage() {
+		return freeThrowsPercentage;
+	}
+
+	public void setFreeThrowsPercentage(Double freeThrowsPercentage) {
+		this.freeThrowsPercentage = freeThrowsPercentage;
+	}
+
+	public Double getFreeThrowsAttempts() {
+		return freeThrowsAttempts;
+	}
+
+	public void setFreeThrowsAttempts(Double freeThrowsAttempts) {
+		this.freeThrowsAttempts = freeThrowsAttempts;
+	}
+
+	public Double getThreePointsPercentage() {
+		return threePointsPercentage;
+	}
+
+	public void setThreePointsPercentage(Double threePointsPercentage) {
+		this.threePointsPercentage = threePointsPercentage;
+	}
+
+	public Double getThreePointsAttempts() {
+		return threePointsAttempts;
+	}
+
+	public void setThreePointsAttempts(Double threePointsAttempts) {
+		this.threePointsAttempts = threePointsAttempts;
+	}
+
+	public Double getFieldGoalsPercentage() {
+		return fieldGoalsPercentage;
+	}
+
+	public void setFieldGoalsPercentage(Double fieldGoalsPercentage) {
+		this.fieldGoalsPercentage = fieldGoalsPercentage;
+	}
+
+	public Double getFieldGoalAttempts() {
+		return fieldGoalAttempts;
+	}
+
+	public void setFieldGoalAttempts(Double fieldGoalAttempts) {
+		this.fieldGoalAttempts = fieldGoalAttempts;
+	}
+
+	public Double getMinutePlayed() {
+		return minutePlayed;
+	}
+
+	public void setMinutePlayed(Double minutePlayed) {
+		this.minutePlayed = minutePlayed;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((age == null) ? 0 : age.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((stats == null) ? 0 : stats.hashCode());
-		result = prime * result + ((team == null) ? 0 : team.hashCode());
 		return result;
 	}
 
@@ -69,28 +177,23 @@ public class Player {
 		if (getClass() != obj.getClass())
 			return false;
 		Player other = (Player) obj;
-		if (age == null) {
-			if (other.age != null)
-				return false;
-		} else if (!age.equals(other.age))
-			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (stats == null) {
-			if (other.stats != null)
-				return false;
-		} else if (!stats.equals(other.stats))
-			return false;
-		if (team == null) {
-			if (other.team != null)
-				return false;
-		} else if (!team.equals(other.team))
-			return false;
 		return true;
 	}
+	
+	
+	
+	
+	
+	
+
+	
+
+	
 	
 	
 	
