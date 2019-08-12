@@ -1,6 +1,8 @@
 package it.polito.tdp.simulatoreNBA.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.simulatoreNBA.model.IdTeam;
@@ -8,6 +10,7 @@ import it.polito.tdp.simulatoreNBA.model.Model;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.ComboBox;
 
 public class NBAController {
@@ -69,6 +72,9 @@ public class NBAController {
     private ComboBox<IdTeam> cmbBoxEast7;
     
     @FXML
+    private TextArea txtLog;
+    
+    @FXML
     private Button btn4West;
 
     @FXML
@@ -88,6 +94,13 @@ public class NBAController {
 
     @FXML
     private Button btn4East;
+    
+
+
+    @FXML
+    void doReset(ActionEvent event) {
+
+    }
 
     @FXML
     void doGoToFinals(ActionEvent event) {
@@ -121,6 +134,42 @@ public class NBAController {
 
     @FXML
     void simula4West(ActionEvent event) {
+    	
+    	txtLog.clear();
+    	
+    	IdTeam team1 = cmbBoxWest1.getValue();
+    	IdTeam team2 = cmbBoxWest2.getValue();
+    	IdTeam team3 = cmbBoxWest3.getValue();
+    	IdTeam team4 = cmbBoxWest4.getValue();
+    	IdTeam team5 = cmbBoxWest5.getValue();
+    	IdTeam team6 = cmbBoxWest6.getValue();
+    	IdTeam team7 = cmbBoxWest7.getValue();
+    	IdTeam team8 = cmbBoxWest8.getValue();
+    	
+    	List<IdTeam> teams = new ArrayList<IdTeam>();
+    	teams.add(team1);
+    	teams.add(team2);
+    	teams.add(team3);
+    	teams.add(team4);
+    	teams.add(team5);
+    	teams.add(team6);
+    	teams.add(team7);
+    	teams.add(team8);
+    	
+    	for(IdTeam team : teams) {
+    		if(team == null) {
+    			txtLog.appendText("ERRORE SIMULAZIONE WEST: Selezionare tutti i teams partecipanti ai playoff per procedere.");
+    			return;
+    		}
+    	}
+    	
+    	
+    	/*if(this.model.checkTeams(team1, team2, team3, team4, team5, team6, team7, team8).equals(1)){
+    		txtLog.appendText("ERRORE SIMULAZIONE WEST: Selezionare tutti i teams partecipanti ai playoff per procedere.\n"
+    				+ "Assicurarsi di non aver inserito due volte lo stesso team.");
+			return;
+    	}*/
+    	
 
     }
 
@@ -142,6 +191,7 @@ public class NBAController {
         assert cmbBoxEast6 != null : "fx:id=\"cmbBoxEast6\" was not injected: check your FXML file 'Table.fxml'.";
         assert cmbBoxEast2 != null : "fx:id=\"cmbBoxEast2\" was not injected: check your FXML file 'Table.fxml'.";
         assert cmbBoxEast7 != null : "fx:id=\"cmbBoxEast7\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txtLog != null : "fx:id=\"txtLog\" was not injected: check your FXML file 'Table.fxml'.";
         assert btn4West != null : "fx:id=\"btn4West\" was not injected: check your FXML file 'Table.fxml'.";
         assert btn2West != null : "fx:id=\"btn2West\" was not injected: check your FXML file 'Table.fxml'.";
         assert btnFinalsWest != null : "fx:id=\"btnFinalsWest\" was not injected: check your FXML file 'Table.fxml'.";

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -78,7 +79,7 @@
             </VBox>
             <VBox spacing="5.0">
                <children>
-                  <ComboBox fx:id="cmbBoxWest1" prefWidth="80.0">
+                  <ComboBox fx:id="cmbBoxWest1" onAction="#doRemoveTeam" prefWidth="80.0">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
@@ -348,50 +349,68 @@
       </HBox>
    </center>
    <bottom>
-      <HBox spacing="7.0" BorderPane.alignment="CENTER">
+      <VBox BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btn4West" mnemonicParsing="false" onAction="#simula4West" prefHeight="60.0" prefWidth="80.0" text="QUARTI WEST" textAlignment="CENTER" textFill="#0105f5" wrapText="true">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="35.0" right="5.0" top="5.0" />
-               </HBox.margin>
-               <rotationAxis>
-                  <Point3D x="-10.0" z="1.0" />
-               </rotationAxis>
-            </Button>
-            <Button fx:id="btn2West" disable="true" mnemonicParsing="false" onAction="#doSimula2West" prefHeight="60.0" prefWidth="80.0" text="SEMIFINALI WEST" textAlignment="CENTER" textFill="#0105f5" wrapText="true">
-               <HBox.margin>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btnFinalsWest" disable="true" mnemonicParsing="false" onAction="#doSimulaFinalsWest" prefHeight="60.0" prefWidth="80.0" text="FINALS WEST" textAlignment="CENTER" textFill="#0105f5" wrapText="true">
-               <HBox.margin>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btnToFinals" disable="true" mnemonicParsing="false" onAction="#doGoToFinals" prefHeight="60.0" prefWidth="130.0" text="GO TO FINALS" textAlignment="CENTER" textFill="#ff2f00" wrapText="true">
-               <HBox.margin>
-                  <Insets bottom="15.0" left="25.0" right="25.0" top="5.0" />
-               </HBox.margin>
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFinalsEast" disable="true" mnemonicParsing="false" onAction="#doSimulaFinalsEast" prefHeight="60.0" prefWidth="80.0" text="FINALS EAST" textAlignment="CENTER" textFill="#16c913" wrapText="true">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" top="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btn2East" disable="true" mnemonicParsing="false" onAction="#doSimula2East" prefHeight="60.0" prefWidth="80.0" text="SEMIFINALI EAST" textAlignment="CENTER" textFill="#16c913" wrapText="true">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btn4East" mnemonicParsing="false" onAction="#doSimula4East" prefHeight="60.0" prefWidth="80.0" text="QUARTI EAST" textAlignment="CENTER" textFill="#16c913" wrapText="true">
-               <HBox.margin>
-                  <Insets bottom="5.0" right="35.0" top="5.0" />
-               </HBox.margin>
-            </Button>
+            <HBox>
+               <children>
+                  <TextArea fx:id="txtLog" editable="false" prefHeight="50.0" prefWidth="755.0" promptText="Benvenuto nel simulatore playoff NBA">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                  </TextArea>
+                  <Button mnemonicParsing="false" onAction="#doReset" prefHeight="50.0" prefWidth="185.0" text="RESET">
+                     <HBox.margin>
+                        <Insets bottom="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox spacing="7.0">
+               <children>
+                  <Button fx:id="btn4West" mnemonicParsing="false" onAction="#simula4West" prefHeight="60.0" prefWidth="80.0" text="QUARTI WEST" textAlignment="CENTER" textFill="#0105f5" wrapText="true">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="35.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                     <rotationAxis>
+                        <Point3D x="-10.0" z="1.0" />
+                     </rotationAxis>
+                  </Button>
+                  <Button fx:id="btn2West" disable="true" mnemonicParsing="false" onAction="#doSimula2West" prefHeight="60.0" prefWidth="80.0" text="SEMIFINALI WEST" textAlignment="CENTER" textFill="#0105f5" wrapText="true">
+                     <HBox.margin>
+                        <Insets bottom="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnFinalsWest" disable="true" mnemonicParsing="false" onAction="#doSimulaFinalsWest" prefHeight="60.0" prefWidth="80.0" text="FINALS WEST" textAlignment="CENTER" textFill="#0105f5" wrapText="true">
+                     <HBox.margin>
+                        <Insets bottom="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnToFinals" disable="true" mnemonicParsing="false" onAction="#doGoToFinals" prefHeight="60.0" prefWidth="130.0" text="GO TO FINALS" textAlignment="CENTER" textFill="#ff2f00" wrapText="true">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="25.0" right="25.0" top="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnFinalsEast" disable="true" mnemonicParsing="false" onAction="#doSimulaFinalsEast" prefHeight="60.0" prefWidth="80.0" text="FINALS EAST" textAlignment="CENTER" textFill="#16c913" wrapText="true">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btn2East" disable="true" mnemonicParsing="false" onAction="#doSimula2East" prefHeight="60.0" prefWidth="80.0" text="SEMIFINALI EAST" textAlignment="CENTER" textFill="#16c913" wrapText="true">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btn4East" mnemonicParsing="false" onAction="#doSimula4East" prefHeight="60.0" prefWidth="80.0" text="QUARTI EAST" textAlignment="CENTER" textFill="#16c913" wrapText="true">
+                     <HBox.margin>
+                        <Insets bottom="5.0" right="35.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-      </HBox>
+      </VBox>
    </bottom>
 </BorderPane>
