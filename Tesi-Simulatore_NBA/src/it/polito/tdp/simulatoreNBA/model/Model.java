@@ -10,8 +10,8 @@ public class Model {
 	
 	private List<IdTeam> EastTeams;
 	private List<IdTeam> WestTeams;
-	private Map<String, IdTeam> playoffEastTeams;
-	private Map<String, IdTeam> playoffWestTeams;
+	/*private Map<String, IdTeam> playoffEastTeams;
+	private Map<String, IdTeam> playoffWestTeams;*/
 	
 	
 	private NBADao dao;
