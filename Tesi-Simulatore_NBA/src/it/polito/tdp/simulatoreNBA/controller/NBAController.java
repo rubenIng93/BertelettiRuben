@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import it.polito.tdp.simulatoreNBA.model.IdTeam;
+import it.polito.tdp.simulatoreNBA.model.Team;
 import it.polito.tdp.simulatoreNBA.model.Model;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -25,52 +25,52 @@ public class NBAController {
     
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxWest1;
+    private ComboBox<Team> cmbBoxWest1;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxWest8;
+    private ComboBox<Team> cmbBoxWest8;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxWest4;
+    private ComboBox<Team> cmbBoxWest4;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxWest5;
+    private ComboBox<Team> cmbBoxWest5;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxWest3;
+    private ComboBox<Team> cmbBoxWest3;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxWest6;
+    private ComboBox<Team> cmbBoxWest6;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxWest2;
+    private ComboBox<Team> cmbBoxWest2;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxWest7;
+    private ComboBox<Team> cmbBoxWest7;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxEast1;
+    private ComboBox<Team> cmbBoxEast1;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxEast8;
+    private ComboBox<Team> cmbBoxEast8;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxEast4;
+    private ComboBox<Team> cmbBoxEast4;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxEast5;
+    private ComboBox<Team> cmbBoxEast5;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxEast3;
+    private ComboBox<Team> cmbBoxEast3;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxEast6;
+    private ComboBox<Team> cmbBoxEast6;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxEast2;
+    private ComboBox<Team> cmbBoxEast2;
 
     @FXML
-    private ComboBox<IdTeam> cmbBoxEast7;
+    private ComboBox<Team> cmbBoxEast7;
     
     @FXML
     private TextArea txtLog;
@@ -125,16 +125,16 @@ public class NBAController {
     	
     	txtLog.clear();
     	
-    	IdTeam team1 = cmbBoxEast1.getValue();
-    	IdTeam team2 = cmbBoxEast2.getValue();
-    	IdTeam team3 = cmbBoxEast3.getValue();
-    	IdTeam team4 = cmbBoxEast4.getValue();
-    	IdTeam team5 = cmbBoxEast5.getValue();
-    	IdTeam team6 = cmbBoxEast6.getValue();
-    	IdTeam team7 = cmbBoxEast7.getValue();
-    	IdTeam team8 = cmbBoxEast8.getValue();
+    	Team team1 = cmbBoxEast1.getValue();
+    	Team team2 = cmbBoxEast2.getValue();
+    	Team team3 = cmbBoxEast3.getValue();
+    	Team team4 = cmbBoxEast4.getValue();
+    	Team team5 = cmbBoxEast5.getValue();
+    	Team team6 = cmbBoxEast6.getValue();
+    	Team team7 = cmbBoxEast7.getValue();
+    	Team team8 = cmbBoxEast8.getValue();
     	
-    	List<IdTeam> teams = new ArrayList<IdTeam>();
+    	List<Team> teams = new ArrayList<Team>();
     	teams.add(team1);
     	teams.add(team2);
     	teams.add(team3);
@@ -147,7 +147,7 @@ public class NBAController {
     	/*
     	 * Controllo input -> tutte le squadre selezionate
     	 */
-    	for(IdTeam team : teams) {
+    	for(Team team : teams) {
     		if(team == null) {
     			txtLog.appendText("ERRORE SIMULAZIONE EAST: Selezionare tutti i teams partecipanti ai playoff per procedere.");
     			return;
@@ -157,9 +157,9 @@ public class NBAController {
     	/*
     	 * Controllo input -> squadre tutte differenti
     	 */
-    	for(IdTeam t1 : teams) {   
+    	for(Team t1 : teams) {   
     		int count = 0;
-    		for(IdTeam t2 : teams) {
+    		for(Team t2 : teams) {
     			if(t1.equals(t2)) {
     				count ++;
     				if(count > 1) {
@@ -188,16 +188,16 @@ public class NBAController {
     	
     	txtLog.clear();
     	
-    	IdTeam team1 = cmbBoxWest1.getValue();
-    	IdTeam team2 = cmbBoxWest2.getValue();
-    	IdTeam team3 = cmbBoxWest3.getValue();
-    	IdTeam team4 = cmbBoxWest4.getValue();
-    	IdTeam team5 = cmbBoxWest5.getValue();
-    	IdTeam team6 = cmbBoxWest6.getValue();
-    	IdTeam team7 = cmbBoxWest7.getValue();
-    	IdTeam team8 = cmbBoxWest8.getValue();
+    	Team team1 = cmbBoxWest1.getValue();
+    	Team team2 = cmbBoxWest2.getValue();
+    	Team team3 = cmbBoxWest3.getValue();
+    	Team team4 = cmbBoxWest4.getValue();
+    	Team team5 = cmbBoxWest5.getValue();
+    	Team team6 = cmbBoxWest6.getValue();
+    	Team team7 = cmbBoxWest7.getValue();
+    	Team team8 = cmbBoxWest8.getValue();
     	
-    	List<IdTeam> teams = new ArrayList<IdTeam>();
+    	List<Team> teams = new ArrayList<Team>();
     	teams.add(team1);
     	teams.add(team2);
     	teams.add(team3);
@@ -210,7 +210,7 @@ public class NBAController {
     	/*
     	 * Controllo input -> tutte le squadre selezionate
     	 */
-    	for(IdTeam team : teams) {
+    	for(Team team : teams) {
     		if(team == null) {
     			txtLog.appendText("ERRORE SIMULAZIONE WEST: Selezionare tutti i teams partecipanti ai playoff per procedere.");
     			return;
@@ -220,9 +220,9 @@ public class NBAController {
     	/*
     	 * Controllo input -> squadre tutte differenti
     	 */
-    	for(IdTeam t1 : teams) {   
+    	for(Team t1 : teams) {   
     		int count = 0;
-    		for(IdTeam t2 : teams) {
+    		for(Team t2 : teams) {
     			if(t1.equals(t2)) {
     				count ++;
     				if(count > 1) {

@@ -184,6 +184,13 @@ public class Player {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return name + " - Team: " + team;
+	}
+	
+	
 	
 	
 	

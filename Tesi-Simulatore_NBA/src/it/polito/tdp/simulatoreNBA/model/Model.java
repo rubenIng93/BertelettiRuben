@@ -8,8 +8,8 @@ import it.polito.tdp.simulatoreNBA.db.NBADao;
 
 public class Model {
 	
-	private List<IdTeam> EastTeams;
-	private List<IdTeam> WestTeams;
+	private List<Team> EastTeams;
+	private List<Team> WestTeams;
 	/*private Map<String, IdTeam> playoffEastTeams;
 	private Map<String, IdTeam> playoffWestTeams;*/
 	
@@ -26,11 +26,11 @@ public class Model {
 	
 
 
-	public List<IdTeam> getEastTeams() {
+	public List<Team> getEastTeams() {
 		return EastTeams;
 	}
 
-	public List<IdTeam> getWestTeams() {
+	public List<Team> getWestTeams() {
 		return WestTeams;
 	}
 	

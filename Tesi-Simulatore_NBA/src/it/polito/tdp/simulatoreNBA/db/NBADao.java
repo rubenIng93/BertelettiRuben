@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import it.polito.tdp.simulatoreNBA.model.IdTeam;
+import it.polito.tdp.simulatoreNBA.model.Team;
 import it.polito.tdp.simulatoreNBA.model.Player;
 
 public class NBADao {
 	
-	public List<IdTeam> getEastTeams(){
+	public List<Team> getEastTeams(){
 		
 		String sql = "SELECT * " + 
 				"FROM teams t " + 
 				"WHERE t.conference = 'east'";
 		
-		List<IdTeam> result = new ArrayList<IdTeam>();
+		List<Team> result = new ArrayList<Team>();
 		
 
 		try {
@@ -28,7 +28,7 @@ public class NBADao {
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
-				IdTeam team = new IdTeam(rs.getString("abbreviation"), rs.getString("name"), "east");
+				Team team = new Team(rs.getString("abbreviation"), rs.getString("name"), "east");
 				result.add(team);
 			}
 
@@ -44,13 +44,13 @@ public class NBADao {
 		
 	}
 	
-	public List<IdTeam> getWestTeams(){
+	public List<Team> getWestTeams(){
 		
 		String sql = "SELECT * " + 
 				"FROM teams t " + 
 				"WHERE t.conference = 'west'";	
 		
-		List<IdTeam> result = new ArrayList<IdTeam>();
+		List<Team> result = new ArrayList<Team>();
 		
 
 		try {
@@ -59,7 +59,7 @@ public class NBADao {
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
-				IdTeam team = new IdTeam(rs.getString("abbreviation"), rs.getString("name"), "west");
+				Team team = new Team(rs.getString("abbreviation"), rs.getString("name"), "west");
 				result.add(team);
 			}
 

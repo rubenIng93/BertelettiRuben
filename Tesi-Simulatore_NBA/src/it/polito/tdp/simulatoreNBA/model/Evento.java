@@ -26,13 +26,13 @@ public class Evento implements Comparable<Evento>{
 		
 	}
 	
-	private LocalTime time;
+	private Integer time;
 	private TipoEvento type;
 	private Player player;
 	private Player assistman;
 	private Player stopper;
 	
-	public Evento(LocalTime time, TipoEvento type, Player player, Player assistman, Player stopper) {
+	public Evento(Integer time, TipoEvento type, Player player, Player assistman, Player stopper) {
 		super();
 		this.time = time;
 		this.type = type;
@@ -41,11 +41,11 @@ public class Evento implements Comparable<Evento>{
 		this.stopper = stopper;
 	}
 
-	public LocalTime getTime() {
+	public Integer getTime() {
 		return time;
 	}
 
-	public void setTime(LocalTime time) {
+	public void setTime(Integer time) {
 		this.time = time;
 	}
 
@@ -84,7 +84,7 @@ public class Evento implements Comparable<Evento>{
 
 	@Override
 	public String toString() {
-		return String.format("Evento -> time = %s, type = %s, player = %s, assistman = %s, stopper = %s", time, type,
+		return String.format("Evento -> time = %s, type = %s, player = %s, assistman = %s, stopper = %s\n", time, type,
 				player, assistman, stopper);
 	}
 
