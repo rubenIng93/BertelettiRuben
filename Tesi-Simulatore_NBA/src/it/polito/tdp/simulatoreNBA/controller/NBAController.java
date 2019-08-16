@@ -144,7 +144,28 @@ public class NBAController {
     @FXML
     void doReset(ActionEvent event) {
     	
-    	
+    	txtLog.clear();
+    	txt1vs8East.clear();
+    	txt1vs8West.clear();
+    	txt2vs7East.clear();
+    	txt2vs7West.clear();
+    	txt3vs6East.clear();
+    	txt3vs6West.clear();
+    	txt4vs5East.clear();
+    	txt4vs5West.clear();
+    	txtFinalist1East.clear();
+    	txtFinalist2East.clear();
+    	txtFinalist1West.clear();
+    	txtFinalist2West.clear();
+    	txtEastWinner.clear();
+    	txtWestWinner.clear();
+    	btn4East.setDisable(false);
+    	btn4West.setDisable(false);
+    	btn2West.setDisable(true);
+    	btn2East.setDisable(true);
+    	btnFinalsEast.setDisable(true);
+    	btnFinalsWest.setDisable(true);
+    	btnToFinals.setDisable(true);
 
     }
 
@@ -155,11 +176,56 @@ public class NBAController {
 
     @FXML
     void doSimula2East(ActionEvent event) {
+    	
+    	txtLog.clear();
+    	Team winner1v8 = model.getWinnerTeamMap().get(txt1vs8East.getText());
+    	Team winner2v7 = model.getWinnerTeamMap().get(txt2vs7East.getText());
+    	Team winner3v6 = model.getWinnerTeamMap().get(txt3vs6East.getText());
+    	Team winner4v5 = model.getWinnerTeamMap().get(txt4vs5East.getText());
+    	
+    	Team finalist1East = model.SimulationWinner(winner1v8, winner4v5);
+    	txtFinalist1East.appendText(finalist1East.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	Team finalist2East = model.SimulationWinner(winner3v6, winner2v7);
+    	txtFinalist2East.appendText(finalist2East.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	btn2East.setDisable(true);
+    	btnFinalsEast.setDisable(false);
+    	
+    	
+    	
 
     }
 
     @FXML
     void doSimula2West(ActionEvent event) {
+    	
+    	txtLog.clear();
+    	Team winner1v8 = model.getWinnerTeamMap().get(txt1vs8West.getText());
+    	Team winner2v7 = model.getWinnerTeamMap().get(txt2vs7West.getText());
+    	Team winner3v6 = model.getWinnerTeamMap().get(txt3vs6West.getText());
+    	Team winner4v5 = model.getWinnerTeamMap().get(txt4vs5West.getText());
+    	
+    	Team finalist1West = model.SimulationWinner(winner1v8, winner4v5);
+    	txtFinalist1West.appendText(finalist1West.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	Team finalist2West = model.SimulationWinner(winner3v6, winner2v7);
+    	txtFinalist2West.appendText(finalist2West.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	btn2West.setDisable(true);
+    	btnFinalsWest.setDisable(false);
 
     }
 
@@ -213,16 +279,75 @@ public class NBAController {
     		}
     		
     	}
+    	
+    	Team winner1vs8 = model.SimulationWinner(team1, team8);
+    	txt1vs8East.appendText(winner1vs8.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	Team winner2vs7 = model.SimulationWinner(team2, team7);
+    	txt2vs7East.appendText(winner2vs7.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	Team winner3vs6 = model.SimulationWinner(team3, team6);
+    	txt3vs6East.appendText(winner3vs6.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	Team winner4vs5 = model.SimulationWinner(team4, team5);
+    	txt4vs5East.appendText(winner4vs5.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	btn4East.setDisable(true);
+    	btn2East.setDisable(false);
 
     }
 
     @FXML
     void doSimulaFinalsEast(ActionEvent event) {
+    	
+    	txtLog.clear();
+    	Team finalist1East = model.getWinnerTeamMap().get(txtFinalist1East.getText());
+    	Team finalist2East = model.getWinnerTeamMap().get(txtFinalist2East.getText());
+    	
+    	
+    	Team eastWinner = model.SimulationWinner(finalist1East, finalist2East);
+    	txtEastWinner.appendText(eastWinner.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	btnFinalsEast.setDisable(true);
+    	if(btnFinalsWest.isDisabled()) {
+    		btnToFinals.setDisable(false);
+    	}
 
     }
 
     @FXML
     void doSimulaFinalsWest(ActionEvent event) {
+    	
+    	txtLog.clear();
+    	Team finalist1West = model.getWinnerTeamMap().get(txtFinalist1West.getText());
+    	Team finalist2West = model.getWinnerTeamMap().get(txtFinalist2West.getText());
+    	
+    	
+    	Team westWinner = model.SimulationWinner(finalist1West, finalist2West);
+    	txtWestWinner.appendText(westWinner.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	btnFinalsWest.setDisable(true);
+    	if(btnFinalsEast.isDisabled()) {
+    		btnToFinals.setDisable(false);
+    	}
 
     }
 
@@ -276,6 +401,36 @@ public class NBAController {
     		}
     		
     	}
+    	
+    	
+    	Team winner1vs8 = model.SimulationWinner(team1, team8);
+    	txt1vs8West.appendText(winner1vs8.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	Team winner2vs7 = model.SimulationWinner(team2, team7);
+    	txt2vs7West.appendText(winner2vs7.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	Team winner3vs6 = model.SimulationWinner(team3, team6);
+    	txt3vs6West.appendText(winner3vs6.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	Team winner4vs5 = model.SimulationWinner(team4, team5);
+    	txt4vs5West.appendText(winner4vs5.getAbbreviation());
+    	for(String s : model.getResult()) {
+    		txtLog.appendText(s + "\n");
+    	}
+    	
+    	btn4West.setDisable(true);
+    	btn2West.setDisable(false);
+    	
+    	
     	
     	
 
