@@ -129,24 +129,24 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
                <children>
-                  <TextField editable="false" prefHeight="25.0" prefWidth="80.0">
+                  <TextField fx:id="txt1vs8West" editable="false" prefHeight="25.0" prefWidth="80.0">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField editable="false" prefWidth="80.0" />
-                  <TextField editable="false" prefWidth="80.0" />
-                  <TextField editable="false" prefWidth="80.0" />
+                  <TextField fx:id="txt4vs5West" editable="false" prefWidth="80.0" />
+                  <TextField fx:id="txt3vs6West" editable="false" prefWidth="80.0" />
+                  <TextField fx:id="txt2vs7West" editable="false" prefWidth="80.0" />
                </children>
             </VBox>
             <VBox spacing="142.0">
                <children>
-                  <TextField editable="false" prefHeight="25.0" prefWidth="80.0">
+                  <TextField fx:id="txtFinalist1West" editable="false" prefHeight="25.0" prefWidth="80.0">
                      <VBox.margin>
                         <Insets top="60.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField editable="false" prefHeight="25.0" prefWidth="80.0" />
+                  <TextField fx:id="txtFinalist2West" editable="false" prefHeight="25.0" prefWidth="80.0" />
                </children>
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -160,12 +160,12 @@
          <children>
             <VBox spacing="142.0">
                <children>
-                  <TextField editable="false" prefHeight="25.0" prefWidth="80.0">
+                  <TextField fx:id="txtFinalist1East" editable="false" prefHeight="25.0" prefWidth="80.0">
                      <VBox.margin>
                         <Insets top="60.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField editable="false" prefHeight="25.0" prefWidth="80.0" />
+                  <TextField fx:id="txtFinalist2East" editable="false" prefHeight="25.0" prefWidth="80.0" />
                </children>
                <HBox.margin>
                   <Insets top="5.0" />
@@ -176,14 +176,14 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
                <children>
-                  <TextField editable="false" prefHeight="25.0" prefWidth="80.0">
+                  <TextField fx:id="txt1vs8East" editable="false" prefHeight="25.0" prefWidth="80.0">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField editable="false" prefHeight="25.0" prefWidth="80.0" />
-                  <TextField editable="false" prefWidth="80.0" />
-                  <TextField editable="false" prefWidth="80.0" />
+                  <TextField fx:id="txt4vs5East" editable="false" prefHeight="25.0" prefWidth="80.0" />
+                  <TextField fx:id="txt3vs6East" editable="false" prefWidth="80.0" />
+                  <TextField fx:id="txt2vs7East" editable="false" prefWidth="80.0" />
                </children>
             </VBox>
             <VBox spacing="5.0">
@@ -315,7 +315,7 @@
                         <Insets left="10.0" right="10.0" top="80.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField editable="false" prefWidth="80.0">
+                  <TextField fx:id="txtWestWinner" editable="false" prefWidth="80.0">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -335,7 +335,7 @@
                         <Insets left="10.0" right="10.0" top="80.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField editable="false" prefWidth="80.0">
+                  <TextField fx:id="txtEastWinner" editable="false" prefWidth="80.0">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

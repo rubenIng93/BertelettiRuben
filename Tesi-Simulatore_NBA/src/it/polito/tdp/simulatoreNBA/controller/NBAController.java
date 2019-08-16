@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 
 public class NBAController {
@@ -71,6 +72,48 @@ public class NBAController {
 
     @FXML
     private ComboBox<Team> cmbBoxEast7;
+    
+    @FXML
+    private TextField txt1vs8West;
+
+    @FXML
+    private TextField txt4vs5West;
+
+    @FXML
+    private TextField txt3vs6West;
+
+    @FXML
+    private TextField txt2vs7West;
+
+    @FXML
+    private TextField txtFinalist1West;
+
+    @FXML
+    private TextField txtFinalist2West;
+
+    @FXML
+    private TextField txtFinalist1East;
+
+    @FXML
+    private TextField txtFinalist2East;
+
+    @FXML
+    private TextField txt1vs8East;
+
+    @FXML
+    private TextField txt4vs5East;
+
+    @FXML
+    private TextField txt3vs6East;
+
+    @FXML
+    private TextField txt2vs7East;
+    
+    @FXML
+    private TextField txtWestWinner;
+
+    @FXML
+    private TextField txtEastWinner;
     
     @FXML
     private TextArea txtLog;
@@ -256,6 +299,20 @@ public class NBAController {
         assert cmbBoxEast6 != null : "fx:id=\"cmbBoxEast6\" was not injected: check your FXML file 'Table.fxml'.";
         assert cmbBoxEast2 != null : "fx:id=\"cmbBoxEast2\" was not injected: check your FXML file 'Table.fxml'.";
         assert cmbBoxEast7 != null : "fx:id=\"cmbBoxEast7\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txt1vs8West != null : "fx:id=\"txt1vs8West\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txt4vs5West != null : "fx:id=\"txt4vs5West\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txt3vs6West != null : "fx:id=\"txt3vs6West\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txt2vs7West != null : "fx:id=\"txt2vs7West\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txtFinalist1West != null : "fx:id=\"txtFinalist1West\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txtFinalist2West != null : "fx:id=\"txtFinalist2West\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txtFinalist1East != null : "fx:id=\"txtFinalist1East\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txtFinalist2East != null : "fx:id=\"txtFinalist2East\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txt1vs8East != null : "fx:id=\"txt1vs8East\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txt4vs5East != null : "fx:id=\"txt4vs5East\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txt3vs6East != null : "fx:id=\"txt3vs6East\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txt2vs7East != null : "fx:id=\"txt2vs7East\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txtWestWinner != null : "fx:id=\"txtWestWinner\" was not injected: check your FXML file 'Table.fxml'.";
+        assert txtEastWinner != null : "fx:id=\"txtEastWinner\" was not injected: check your FXML file 'Table.fxml'.";
         assert txtLog != null : "fx:id=\"txtLog\" was not injected: check your FXML file 'Table.fxml'.";
         assert btn4West != null : "fx:id=\"btn4West\" was not injected: check your FXML file 'Table.fxml'.";
         assert btn2West != null : "fx:id=\"btn2West\" was not injected: check your FXML file 'Table.fxml'.";
