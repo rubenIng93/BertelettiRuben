@@ -28,14 +28,17 @@ public class Evento implements Comparable<Evento>{
 	
 	private Integer time;
 	private TipoEvento type;
+	private Team team;
 	private Player player;
 	private Player assistman;
 	private Player stopper;
 	
-	public Evento(Integer time, TipoEvento type, Player player, Player assistman, Player stopper) {
+	
+	public Evento(Integer time, TipoEvento type, Team team, Player player, Player assistman, Player stopper) {
 		super();
 		this.time = time;
 		this.type = type;
+		this.team = team;
 		this.player = player;
 		this.assistman = assistman;
 		this.stopper = stopper;
@@ -81,6 +84,13 @@ public class Evento implements Comparable<Evento>{
 		this.stopper = stopper;
 	}
 	
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
 
 	@Override
 	public String toString() {

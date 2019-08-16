@@ -7,9 +7,12 @@ public class TestSimulatore {
 		Model model = new Model();
 		
 		Simulatore sim = new Simulatore();
-		sim.init(model.getWestTeams().get(0), model.getWestTeams().get(1));
+		sim.init(model.getWestTeams().get(4), model.getWestTeams().get(7));
+		
 		
 		System.out.println(sim.getQueue() + "Numero azioni: " + sim.getQueue().size());
+		sim.run();
+		System.out.println("\n\n"+sim.getMatch());
 
 	}
 

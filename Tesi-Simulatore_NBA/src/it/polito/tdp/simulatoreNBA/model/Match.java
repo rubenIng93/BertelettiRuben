@@ -94,7 +94,7 @@ public class Match {
 
 	@Override
 	public String toString() {
-		return String.format("Match -> homePoints = %s, awayPoints = %s", homePoints, awayPoints);
+		return this.home.getAbbreviation() + " " + this.homePoints+ " vs " + this.away.getAbbreviation() + " " + this.awayPoints + " Winner: " + this.winner.getName();
 	}
 	
 	
