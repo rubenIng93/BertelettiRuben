@@ -1,6 +1,8 @@
 package it.polito.tdp.simulatoreNBA.model;
 
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Random;
@@ -14,6 +16,7 @@ public class Simulatore {
 	private Random rand;
 	private Match match;
 	private Integer idMatch = 0;
+	private List<Player> playerRandom;
 	private Integer homePoints;
 	private Integer awayPoints;
 	private NBADao dao;
@@ -29,6 +32,8 @@ public class Simulatore {
 		this.awayPoints = 0;
 		this.homePoints = 0;
 		
+		this.playerRandom = new ArrayList<Player>();
+		
 		this.match = new Match(idMatch, this.homePoints, this.awayPoints, home, away, null);
 		
 		this.dao = new NBADao();
@@ -39,6 +44,11 @@ public class Simulatore {
 		
 		home.setPlayers(hPlayers);
 		away.setPlayers(aPlayers);
+		
+		this.playerRandom.addAll(hPlayers);
+		this.playerRandom.addAll(aPlayers);
+		
+		Collections.shuffle(playerRandom);
 		
 		this.match.setAway(away);
 		this.match.setHome(home);
@@ -55,7 +65,7 @@ public class Simulatore {
 			/*
 			 * CARICAMENTO CODA AZIONI SQUADRA IN CASA
 			 */
-			for(Player homeP : hPlayers) {
+			for(Player homeP : this.playerRandom) {
 				/*
 				 * Ogni giocatore prende tiri in base alla media della regular season
 				 * impostato attualmente al tra il 70% e 100% in modo randomico
@@ -65,19 +75,48 @@ public class Simulatore {
 					//trovare modo per aggiungere assist e stoppote
 					Integer attempt3 = (int) ((((rand.nextInt(30) + 70) * homeP.getThreePointsAttempts()) / 100));
 					for(int i = 0; i < attempt3; i++) {
-						this.queue.add(new Evento(matchTime, TipoEvento.THREE_POINTS_ATTEMPT,home, homeP, null, null));
+						
+						if(homeP.getTeam().equals(home.getName())) {
+							
+							this.queue.add(new Evento(matchTime, TipoEvento.THREE_POINTS_ATTEMPT,home, homeP, null, null));
+							
+						}else {
+							
+							this.queue.add(new Evento(matchTime, TipoEvento.THREE_POINTS_ATTEMPT,away, homeP, null, null));
+							
+						}
+						
 						matchTime = matchTime + ((rand.nextInt(this.TEMPO_RANDOM_AZIONE)) + this.TEMPO_COSTANTE_AZIONE);
 					}
 					
 					Integer attempt2 = (int) ((((rand.nextInt(30) + 70) * homeP.getFieldGoalAttempts()) / 100));
 					for(int i = 0; i < attempt2; i++) {
-						this.queue.add(new Evento(matchTime, TipoEvento.FIELD_GOAL_ATTEMPT, home, homeP, null, null));
+						
+						if(homeP.getTeam().equals(home.getName())) {
+							
+							this.queue.add(new Evento(matchTime, TipoEvento.FIELD_GOAL_ATTEMPT, home, homeP, null, null));
+							
+						}else {
+							
+							this.queue.add(new Evento(matchTime, TipoEvento.FIELD_GOAL_ATTEMPT, away, homeP, null, null));
+							
+						}
+						
 						matchTime = matchTime + ((rand.nextInt(this.TEMPO_RANDOM_AZIONE)) + this.TEMPO_COSTANTE_AZIONE);
 					}
 					
 					Integer freeT = (int) ((((rand.nextInt(30) + 70) * homeP.getFreeThrowsAttempts()) / 100));
 					for(int i = 0; i < freeT; i++) {
-						this.queue.add(new Evento(matchTime, TipoEvento.FREE_THROW_ATTEMPT, home, homeP, null, null));
+						if(homeP.getTeam().equals(home.getName())) {
+							
+							this.queue.add(new Evento(matchTime, TipoEvento.FREE_THROW_ATTEMPT, home, homeP, null, null));
+							
+						}else {
+							
+							this.queue.add(new Evento(matchTime, TipoEvento.FREE_THROW_ATTEMPT, away, homeP, null, null));
+							
+						}
+						
 						matchTime = matchTime + ((rand.nextInt(this.TEMPO_RANDOM_AZIONE)) + this.TEMPO_COSTANTE_AZIONE);
 					}
 				}
@@ -89,14 +128,14 @@ public class Simulatore {
 			/*
 			 * CARICAMENTO CODA AZIONI SQUADRA OSPITE
 			 */
-			for(Player awayP : aPlayers) {
+			//for(Player awayP : aPlayers) {
 				/*
 				 * Ogni giocatore prende tiri in base alla media della regular season
 				 * impostato attualmente al tra il 70% e 100% in modo randomico
 				 */
 				
 				
-				if(matchTime <= matchDurations) {
+				/*if(matchTime <= matchDurations) {
 					//trovare modo per aggiungere assist e stoppote
 					Integer attempt3 = (int) ((((rand.nextInt(30) + 70) * awayP.getThreePointsAttempts()) / 100));
 					for(int i = 0; i < attempt3; i++) {
@@ -118,7 +157,7 @@ public class Simulatore {
 				}
 				
 				
-			}
+			}*/
 			
 			
 			
