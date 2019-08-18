@@ -13,6 +13,8 @@ public class Model {
 	private List<Team> WestTeams;
 	private Map<String, Team> winnerTeamMap; 
 	private Simulatore sim;
+	private Team eastWinner;
+	private Team westWinner;
 	private Integer winH;
 	private Integer winA;
 	private List<String> result;
@@ -98,6 +100,24 @@ public class Model {
 	public Map<String, Team> getWinnerTeamMap() {
 		return winnerTeamMap;
 	}
+
+	public void saveEastWinner(Team eastWinner) {
+		this.eastWinner = eastWinner;
+	}
+	
+	public void saveWestWinner(Team westWinner) {
+		this.westWinner = westWinner;
+	}
+
+	public Team getEastWinner() {
+		return eastWinner;
+	}
+
+	public Team getWestWinner() {
+		return westWinner;
+	}
+	
+	
 	
 	
 	

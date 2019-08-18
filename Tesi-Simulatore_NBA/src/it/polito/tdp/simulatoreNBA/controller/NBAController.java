@@ -350,6 +350,8 @@ public class NBAController {
     		txtLog.appendText(s + "\n");
     	}
     	
+    	model.saveEastWinner(eastWinner);//salvataggio in Model
+    	
     	btnFinalsEast.setDisable(true);
     	if(btnFinalsWest.isDisabled()) {
     		btnToFinals.setDisable(false);
@@ -370,6 +372,8 @@ public class NBAController {
     	for(String s : model.getResult()) {
     		txtLog.appendText(s + "\n");
     	}
+    	
+    	model.saveWestWinner(westWinner);//salvataggio in Model
     	
     	btnFinalsWest.setDisable(true);
     	if(btnFinalsEast.isDisabled()) {
