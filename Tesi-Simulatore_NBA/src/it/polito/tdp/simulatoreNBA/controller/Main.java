@@ -18,7 +18,7 @@ public class Main extends Application {
 			NBAController controller = loader.getController();
 			Model model = new Model();
 			
-			controller.setModel(model);
+			controller.setModel(model, primaryStage);
 			
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

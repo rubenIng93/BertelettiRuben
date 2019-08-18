@@ -5,18 +5,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+
 import it.polito.tdp.simulatoreNBA.model.Team;
 import it.polito.tdp.simulatoreNBA.model.Model;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import javafx.scene.control.ComboBox;
 
 public class NBAController {
 	
 	private Model model;
+	
+	private Stage stage;
 
     @FXML
     private ResourceBundle resources;
@@ -171,6 +178,26 @@ public class NBAController {
 
     @FXML
     void doGoToFinals(ActionEvent event) {
+    	
+    	try {
+    		
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("GoToFinals.fxml"));
+			BorderPane root = (BorderPane) loader.load();
+			Scene scene = new Scene(root);
+			
+			FinalsController controller = loader.getController();
+			controller.setModel(model, stage);
+			
+			stage.setScene(scene);
+			stage.setTitle("prova");
+			stage.setAlwaysOnTop(true);
+			stage.show();
+		
+		
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 
     }
 
@@ -479,8 +506,9 @@ public class NBAController {
 
     }
     
-    public void setModel(Model model) {
+    public void setModel(Model model, Stage stage) {
     	this.model = model;
+    	this.stage = stage;
     	this.cmbBoxEast1.getItems().addAll(model.getEastTeams());
     	this.cmbBoxEast2.getItems().addAll(model.getEastTeams());
     	this.cmbBoxEast3.getItems().addAll(model.getEastTeams());
