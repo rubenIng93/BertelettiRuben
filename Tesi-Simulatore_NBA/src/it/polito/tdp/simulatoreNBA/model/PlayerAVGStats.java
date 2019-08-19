@@ -1,6 +1,6 @@
 package it.polito.tdp.simulatoreNBA.model;
 
-public class PlayerAVGStats {
+public class PlayerAVGStats implements Comparable<PlayerAVGStats>{
 	
 	private String name;
 	private Integer nGames;
@@ -105,6 +105,11 @@ public class PlayerAVGStats {
 		return String.format(
 				"PlayerAVGStats -> name = %s, nGames = %s, point = %s, assist = %s, rebounds = %s, steal = %s, block = %s",
 				name, nGames, point, assist, rebounds, steal, block);
+	}
+
+	@Override
+	public int compareTo(PlayerAVGStats o) {
+		return o.point.compareTo(this.point);
 	}
 	
 	

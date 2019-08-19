@@ -2,6 +2,7 @@ package it.polito.tdp.simulatoreNBA.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -92,6 +93,28 @@ public class FinalsController {
     	Team champ = model.SimulationWinner(model.getEastWinner(), model.getWestWinner());
     	
     	txtChamp.appendText(champ.getName());
+    	
+    	List<PlayerAVGStats> westStats = new ArrayList<PlayerAVGStats>();
+		
+		for(Player p : model.getWestWinner().getPlayers()) {
+			westStats.add(model.avgByPlayer(p));
+		}
+		
+		Collections.sort(westStats); //prima chi ha segnato più punti
+		
+		ObservableList<PlayerAVGStats> values = FXCollections.observableArrayList(westStats);
+		tableWest.setItems(values);
+		
+		List<PlayerAVGStats> eastStats = new ArrayList<PlayerAVGStats>();
+		
+		for(Player p : model.getEastWinner().getPlayers()) {
+			eastStats.add(model.avgByPlayer(p));
+		}
+		
+		Collections.sort(eastStats);//prima chi ha segnato più punti
+		
+		ObservableList<PlayerAVGStats> valuesE = FXCollections.observableArrayList(eastStats);
+		tableEast.setItems(valuesE);
 
     	
     	for(String s : model.getResult()) {
@@ -118,10 +141,15 @@ public class FinalsController {
         assert txtChamp != null : "fx:id=\"txtChamp\" was not injected: check your FXML file 'GoToFinals.fxml'.";
         assert txtAreaResults != null : "fx:id=\"txtAreaResults\" was not injected: check your FXML file 'GoToFinals.fxml'.";
         
-        columnPlayerWest.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, String>("Giocatore"));
-        columnPointsWest.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, Double>("Punti"));      
-        columnAssistsWest.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, Double>("Assist"));
-        columnStopWest.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, Double>("Stop"));      
+        columnPlayerWest.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, String>("name"));
+        columnPointsWest.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, Double>("point"));      
+        columnAssistsWest.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, Double>("assist"));
+        columnStopWest.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, Double>("rebounds"));  
+        
+        columnPlayerEast.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, String>("name"));
+        columnPointsEast.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, Double>("point"));      
+        columnAssistsEast.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, Double>("assist"));
+        columnStopEast.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, Double>("rebounds"));
 
 
     }

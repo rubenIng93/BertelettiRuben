@@ -10,9 +10,13 @@ public class TestSimulatore {
 		sim.init(model.getWestTeams().get(4), model.getWestTeams().get(7));
 		
 		
-		System.out.println(sim.getQueue() + "Numero azioni: " + sim.getQueue().size());
+		//.out.println(sim.getQueue() + "Numero azioni: " + sim.getQueue().size());
 		sim.run();
-		System.out.println("\n\n"+sim.getMatch());
+		//System.out.println("\n\n"+sim.getMatch());
+		for(PlayerAVGStats p : sim.getMatch().getPlayerStats()) {
+			System.out.println(p);
+		}
+		
 
 	}
 

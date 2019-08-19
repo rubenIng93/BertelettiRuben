@@ -18,6 +18,8 @@ public class Model {
 	private Integer winH;
 	private Integer winA;
 	private List<String> result;
+	private List<Match> matchs;
+	private List<PlayerAVGStats> prova;
 		
 	private NBADao dao;
 	
@@ -28,6 +30,8 @@ public class Model {
 				
 		this.EastTeams = dao.getEastTeams();
 		this.WestTeams = dao.getWestTeams();
+		this.matchs = new ArrayList<>();
+		this.prova = new ArrayList<>();
 		this.winnerTeamMap = new HashMap<String, Team>();
 	}
 	
@@ -55,6 +59,10 @@ public class Model {
 					this.result.add(res);
 				}
 				
+				this.matchs.add(sim.getMatch());
+				this.prova.addAll(sim.getMatch().getPlayerStats());
+				
+				
 			}
 			
 			
@@ -72,6 +80,26 @@ public class Model {
 					
 		
 	}
+	
+	public PlayerAVGStats avgByPlayer(Player player){
+		int ngame = 0;
+		Double points = 0.0;
+		Double assists = 0.0;
+		Double rebounds = 0.0;
+		
+		for(PlayerAVGStats pas : this.prova) {
+			if(player.getName().equals(pas.getName())) {
+				ngame++;
+				points = points + pas.getPoint();
+				assists = assists + pas.getAssist();
+				rebounds = rebounds + pas.getRebounds();
+			}
+		}
+		
+		PlayerAVGStats avg = new PlayerAVGStats(player.getName(), ngame, points / ngame, assists / ngame, rebounds / ngame);
+		return avg;
+	}
+
 	
 	public List<String> getResult() {
 		return result;

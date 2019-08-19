@@ -59,6 +59,14 @@ public class Simulatore {
 		this.match.setAway(away);
 		this.match.setHome(home);
 		
+		this.match.initStats();
+		
+		for(PlayerAVGStats pas : match.getPlayerStats()) {//aggiornamento match giocato
+			pas.setnGames(pas.getnGames() + 1);
+		}
+		
+		//System.out.println(match.getPlayerStats());
+		
 		Integer matchTime = 0;
 		//Durata partita 48 minuti
 			
@@ -153,6 +161,11 @@ public class Simulatore {
 			case FIELD_GOAL_ATTEMPT:
 				if(ev.getPlayer().getFieldGoalsPercentage() > rand.nextDouble()) {
 					//aggiorno lo score player globale
+					for(PlayerAVGStats pas : match.getPlayerStats()) {
+						if(pas.getName().equals(ev.getPlayer().getName())) {
+							pas.setPoint(pas.getPoint() + 2);
+						}
+					}
 					
 					if(team.getName().equals(this.match.getHome().getName())) {
 						this.homePoints = this.homePoints + 2;
@@ -167,6 +180,11 @@ public class Simulatore {
 			case THREE_POINTS_ATTEMPT:
 				if(ev.getPlayer().getThreePointsPercentage() > rand.nextDouble()) {
 					//aggiorno lo score punti player globale
+					for(PlayerAVGStats pas : match.getPlayerStats()) {
+						if(pas.getName().equals(ev.getPlayer().getName())) {
+							pas.setPoint(pas.getPoint() + 3);
+						}
+					}
 					
 					if(team.getName().equals(this.match.getHome().getName())) {
 						this.homePoints = this.homePoints + 3;
@@ -181,7 +199,12 @@ public class Simulatore {
 			case FREE_THROW_ATTEMPT:
 				if(ev.getPlayer().getFreeThrowsPercentage() > rand.nextDouble()) {
 					//aggiorno lo score player globale
-				
+					for(PlayerAVGStats pas : match.getPlayerStats()) {
+						if(pas.getName().equals(ev.getPlayer().getName())) {
+							pas.setPoint(pas.getPoint() + 1);
+						}
+					}
+					
 					if(team.getName().equals(this.match.getHome().getName())) {
 						this.homePoints ++;
 					}else {
@@ -208,6 +231,8 @@ public class Simulatore {
 		}else {
 			this.match.setWinner(this.match.getAway());
 		}
+		
+		
 		
 	}
 	

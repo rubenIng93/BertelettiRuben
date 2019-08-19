@@ -1,5 +1,10 @@
 package it.polito.tdp.simulatoreNBA.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Match {
 	
 	private Integer idMatch;
@@ -8,6 +13,7 @@ public class Match {
 	private Team home;
 	private Team away;
 	private Team winner;
+	private List<PlayerAVGStats> playerStats;
 	
 	public Match(Integer idMatch, Integer homePoints, Integer awayPoints, Team home, Team away, Team winner) {
 		super();
@@ -17,6 +23,9 @@ public class Match {
 		this.home = home;
 		this.away = away;
 		this.winner = winner;
+		this.playerStats = new ArrayList<PlayerAVGStats>();
+		
+		
 	}
 
 	public Integer getIdMatch() {
@@ -65,6 +74,23 @@ public class Match {
 
 	public void setWinner(Team winner) {
 		this.winner = winner;
+	}	
+
+	public List<PlayerAVGStats> getPlayerStats() {
+		return playerStats;
+	}
+
+	public void setPlayerStats(List<PlayerAVGStats> playerStats) {
+		this.playerStats = playerStats;
+	}
+	
+	public void initStats() {
+		for(Player hp : home.getPlayers()) {
+			playerStats.add(new PlayerAVGStats(hp.getName(), 0, 0.0, 0.0, 0.0));
+		}
+		for(Player ap : away.getPlayers()) {
+			playerStats.add(new PlayerAVGStats(ap.getName(), 0, 0.0, 0.0, 0.0));
+		}
 	}
 
 	@Override
