@@ -18,17 +18,14 @@ public class Model {
 	private Integer winH;
 	private Integer winA;
 	private List<String> result;
-	
-	
-	
+		
 	private NBADao dao;
 	
 	public Model() {
 		
 		this.dao = new NBADao();
 		this.sim = new Simulatore();
-		
-		
+				
 		this.EastTeams = dao.getEastTeams();
 		this.WestTeams = dao.getWestTeams();
 		this.winnerTeamMap = new HashMap<String, Team>();
@@ -57,6 +54,7 @@ public class Model {
 					String res = this.sim.getMatch().toString();
 					this.result.add(res);
 				}
+				
 			}
 			
 			
@@ -75,8 +73,6 @@ public class Model {
 		
 	}
 	
-
-
 	public List<String> getResult() {
 		return result;
 	}
@@ -116,6 +112,11 @@ public class Model {
 	public Team getWestWinner() {
 		return westWinner;
 	}
+
+	
+
+	
+	
 	
 	
 	

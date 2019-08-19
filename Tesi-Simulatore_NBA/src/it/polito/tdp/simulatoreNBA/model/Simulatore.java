@@ -3,7 +3,9 @@ package it.polito.tdp.simulatoreNBA.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Random;
 
@@ -20,6 +22,8 @@ public class Simulatore {
 	private Integer homePoints;
 	private Integer awayPoints;
 	private NBADao dao;
+	private List<Evento> eventList;
+	
 	
 	//Parametri simulazione
 	private final Integer matchDurations = 48 * 60; //rappresentazione in secondi
@@ -33,6 +37,8 @@ public class Simulatore {
 		this.homePoints = 0;
 		
 		this.playerRandom = new ArrayList<Player>();
+				
+		this.eventList = new ArrayList<>();
 		
 		this.match = new Match(idMatch, this.homePoints, this.awayPoints, home, away, null);
 		
@@ -41,7 +47,7 @@ public class Simulatore {
 		
 		List<Player> hPlayers = dao.getPlayerByTeam(home.getName());
 		List<Player> aPlayers = dao.getPlayerByTeam(away.getName());
-		
+				
 		home.setPlayers(hPlayers);
 		away.setPlayers(aPlayers);
 		
@@ -55,15 +61,11 @@ public class Simulatore {
 		
 		Integer matchTime = 0;
 		//Durata partita 48 minuti
-		while(matchTime <= matchDurations) {
 			
+		// Metto in coda un'azione in un periodo casuale tra 30s e 60s
+			 
 			/*
-			 * Metto in coda un'azione in un periodo casuale tra 30s e 60s
-			 */
-			
-			
-			/*
-			 * CARICAMENTO CODA AZIONI SQUADRA IN CASA
+			 * CARICAMENTO CODA AZIONI
 			 */
 			for(Player homeP : this.playerRandom) {
 				/*
@@ -71,100 +73,69 @@ public class Simulatore {
 				 * impostato attualmente al tra il 70% e 100% in modo randomico
 				 */
 				
-				if(matchTime <= matchDurations) {
-					//trovare modo per aggiungere assist e stoppote
-					Integer attempt3 = (int) ((((rand.nextInt(30) + 70) * homeP.getThreePointsAttempts()) / 100));
-					for(int i = 0; i < attempt3; i++) {
+				//trovare modo per aggiungere assist e stoppote
+				Integer attempt3 = (int) ((((rand.nextInt(30) + 70) * homeP.getThreePointsAttempts()) / 100));
+				for(int i = 0; i < attempt3; i++) {
+					
+					if(homeP.getTeam().equals(home.getName())) {
 						
-						if(homeP.getTeam().equals(home.getName())) {
-							
-							this.queue.add(new Evento(matchTime, TipoEvento.THREE_POINTS_ATTEMPT,home, homeP, null, null));
-							
-						}else {
-							
-							this.queue.add(new Evento(matchTime, TipoEvento.THREE_POINTS_ATTEMPT,away, homeP, null, null));
-							
-						}
+						this.eventList.add(new Evento(null, TipoEvento.THREE_POINTS_ATTEMPT,home, homeP, null, null));
 						
-						matchTime = matchTime + ((rand.nextInt(this.TEMPO_RANDOM_AZIONE)) + this.TEMPO_COSTANTE_AZIONE);
+					}else {
+						
+						this.eventList.add(new Evento(null, TipoEvento.THREE_POINTS_ATTEMPT,away, homeP, null, null));
+						
 					}
 					
-					Integer attempt2 = (int) ((((rand.nextInt(30) + 70) * homeP.getFieldGoalAttempts()) / 100));
-					for(int i = 0; i < attempt2; i++) {
-						
-						if(homeP.getTeam().equals(home.getName())) {
-							
-							this.queue.add(new Evento(matchTime, TipoEvento.FIELD_GOAL_ATTEMPT, home, homeP, null, null));
-							
-						}else {
-							
-							this.queue.add(new Evento(matchTime, TipoEvento.FIELD_GOAL_ATTEMPT, away, homeP, null, null));
-							
-						}
-						
-						matchTime = matchTime + ((rand.nextInt(this.TEMPO_RANDOM_AZIONE)) + this.TEMPO_COSTANTE_AZIONE);
-					}
-					
-					Integer freeT = (int) ((((rand.nextInt(30) + 70) * homeP.getFreeThrowsAttempts()) / 100));
-					for(int i = 0; i < freeT; i++) {
-						if(homeP.getTeam().equals(home.getName())) {
-							
-							this.queue.add(new Evento(matchTime, TipoEvento.FREE_THROW_ATTEMPT, home, homeP, null, null));
-							
-						}else {
-							
-							this.queue.add(new Evento(matchTime, TipoEvento.FREE_THROW_ATTEMPT, away, homeP, null, null));
-							
-						}
-						
-						matchTime = matchTime + ((rand.nextInt(this.TEMPO_RANDOM_AZIONE)) + this.TEMPO_COSTANTE_AZIONE);
-					}
 				}
+				
+				Integer attempt2 = (int) ((((rand.nextInt(30) + 70) * homeP.getFieldGoalAttempts()) / 100));
+				for(int i = 0; i < attempt2; i++) {
+					
+					if(homeP.getTeam().equals(home.getName())) {
 						
+						this.eventList.add(new Evento(null, TipoEvento.FIELD_GOAL_ATTEMPT, home, homeP, null, null));
+						
+					}else {
+						
+						this.eventList.add(new Evento(null, TipoEvento.FIELD_GOAL_ATTEMPT, away, homeP, null, null));
+						
+					}
+					
+				}
+				
+				Integer freeT = (int) ((((rand.nextInt(30) + 70) * homeP.getFreeThrowsAttempts()) / 100));
+				for(int i = 0; i < freeT; i++) {
+					if(homeP.getTeam().equals(home.getName())) {
+						
+						this.eventList.add(new Evento(null, TipoEvento.FREE_THROW_ATTEMPT, home, homeP, null, null));
+						
+					}else {
+						
+						this.eventList.add(new Evento(null, TipoEvento.FREE_THROW_ATTEMPT, away, homeP, null, null));
+						
+					}
+					
+				}
 				
 			}
 			
-			
 			/*
-			 * CARICAMENTO CODA AZIONI SQUADRA OSPITE
+			 * Le istruzioni seguenti randomizzano la coda eventi:
+			 * gli eventi si recuperano dalla lista, gli si assegna un tempo secondo i parametri e si aggiunge alla coda,
+			 * fino a quando non si arriva a 48 minuti di partita
+			 * 
 			 */
-			//for(Player awayP : aPlayers) {
-				/*
-				 * Ogni giocatore prende tiri in base alla media della regular season
-				 * impostato attualmente al tra il 70% e 100% in modo randomico
-				 */
-				
-				
-				/*if(matchTime <= matchDurations) {
-					//trovare modo per aggiungere assist e stoppote
-					Integer attempt3 = (int) ((((rand.nextInt(30) + 70) * awayP.getThreePointsAttempts()) / 100));
-					for(int i = 0; i < attempt3; i++) {
-						this.queue.add(new Evento(matchTime, TipoEvento.THREE_POINTS_ATTEMPT, away, awayP, null, null));
-						matchTime = matchTime + ((rand.nextInt(this.TEMPO_RANDOM_AZIONE)) + this.TEMPO_COSTANTE_AZIONE);
-					}
-					
-					Integer attempt2 = (int) ((((rand.nextInt(30) + 70) * awayP.getFieldGoalAttempts()) / 100));
-					for(int i = 0; i < attempt2; i++) {
-						this.queue.add(new Evento(matchTime, TipoEvento.FIELD_GOAL_ATTEMPT, away, awayP, null, null));
-						matchTime = matchTime + ((rand.nextInt(this.TEMPO_RANDOM_AZIONE)) + this.TEMPO_COSTANTE_AZIONE);
-					}
-					
-					Integer freeT = (int) ((((rand.nextInt(30) + 70) * awayP.getFreeThrowsAttempts()) / 100));
-					for(int i = 0; i < freeT; i++) {
-						this.queue.add(new Evento(matchTime, TipoEvento.FREE_THROW_ATTEMPT, away, awayP, null, null));
-						matchTime = matchTime + ((rand.nextInt(this.TEMPO_RANDOM_AZIONE)) + this.TEMPO_COSTANTE_AZIONE);
-					}		
+			
+			Collections.shuffle(eventList);
+			
+			for(Evento ev : this.eventList) {
+				if(matchTime <= matchDurations) {
+					matchTime = matchTime + ((rand.nextInt(this.TEMPO_RANDOM_AZIONE)) + this.TEMPO_COSTANTE_AZIONE);
+					ev.setTime(matchTime);
+					this.queue.add(ev);
 				}
-				
-				
-			}*/
-			
-			
-			
-		}
-		
-		
-		
+			}
 		
 	}
 	
@@ -181,7 +152,8 @@ public class Simulatore {
 			
 			case FIELD_GOAL_ATTEMPT:
 				if(ev.getPlayer().getFieldGoalsPercentage() > rand.nextDouble()) {
-					//this.queue.add(new Evento(ev.getTime(), TipoEvento.SUCCESSFUL_ATTEMPT, ev.getPlayer(), null, null));
+					//aggiorno lo score player globale
+					
 					if(team.getName().equals(this.match.getHome().getName())) {
 						this.homePoints = this.homePoints + 2;
 					}else {
@@ -194,7 +166,8 @@ public class Simulatore {
 				
 			case THREE_POINTS_ATTEMPT:
 				if(ev.getPlayer().getThreePointsPercentage() > rand.nextDouble()) {
-					//this.queue.add(new Evento(ev.getTime(), TipoEvento.SUCCESSFUL_ATTEMPT, ev.getPlayer(), null, null));
+					//aggiorno lo score punti player globale
+					
 					if(team.getName().equals(this.match.getHome().getName())) {
 						this.homePoints = this.homePoints + 3;
 					}else {
@@ -207,7 +180,8 @@ public class Simulatore {
 				
 			case FREE_THROW_ATTEMPT:
 				if(ev.getPlayer().getFreeThrowsPercentage() > rand.nextDouble()) {
-					//this.queue.add(new Evento(ev.getTime(), TipoEvento.SUCCESSFUL_ATTEMPT, ev.getPlayer(), null, null));
+					//aggiorno lo score player globale
+				
 					if(team.getName().equals(this.match.getHome().getName())) {
 						this.homePoints ++;
 					}else {
@@ -246,6 +220,16 @@ public class Simulatore {
 	public PriorityQueue<Evento> getQueue() {
 		return queue;
 	}
+
+	public List<Player> getPlayerRandom() {
+		return playerRandom;
+	}
+
+	
+	
+	
+	
+	
 	
 	
 	

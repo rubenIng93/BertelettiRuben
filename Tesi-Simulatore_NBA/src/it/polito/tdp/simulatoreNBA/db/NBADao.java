@@ -5,11 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import it.polito.tdp.simulatoreNBA.model.Team;
 import it.polito.tdp.simulatoreNBA.model.Player;
+import it.polito.tdp.simulatoreNBA.model.PlayerAVGStats;
 
 public class NBADao {
 	
@@ -118,6 +120,42 @@ public class NBADao {
 		}
 
 		return teamsPlayers;
+	}
+	
+	public Map<String, PlayerAVGStats> getAllPlayer(){
+		
+		String sql = "SELECT name " + 
+				"FROM player_stats " + 
+				"WHERE team IS NOT null";
+		
+		Map<String, PlayerAVGStats> allPlayers = new HashMap<String, PlayerAVGStats>();
+		
+		try {
+			Connection conn = DBConnect.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				PlayerAVGStats p = new PlayerAVGStats(rs.getString("name"),
+						0,
+						0.0,
+						0.0,
+						0.0);
+						
+				
+				allPlayers.put(p.getName(), p);
+			}
+
+			st.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Errore di connessione al Database.");
+		}
+
+		return allPlayers;
+		
 	}
 
 }

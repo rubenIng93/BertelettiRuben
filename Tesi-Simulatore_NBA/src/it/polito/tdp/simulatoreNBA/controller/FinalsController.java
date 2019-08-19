@@ -1,16 +1,23 @@
 package it.polito.tdp.simulatoreNBA.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.simulatoreNBA.model.Model;
+import it.polito.tdp.simulatoreNBA.model.Player;
+import it.polito.tdp.simulatoreNBA.model.PlayerAVGStats;
 import it.polito.tdp.simulatoreNBA.model.Team;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class FinalsController {
@@ -30,19 +37,19 @@ public class FinalsController {
     private TextField txtWestWinner;
     
     @FXML
-    private TableView<?> tableWest;
+    private TableView<PlayerAVGStats> tableWest;
 
     @FXML
-    private TableColumn<?, ?> columnPlayerWest;
+    private TableColumn<PlayerAVGStats, String> columnPlayerWest;
 
     @FXML
-    private TableColumn<?, ?> columnPointsWest;
+    private TableColumn<PlayerAVGStats, Double> columnPointsWest;
 
     @FXML
-    private TableColumn<?, ?> columnAssistsWest;
+    private TableColumn<PlayerAVGStats, Double> columnAssistsWest;
 
     @FXML
-    private TableColumn<?, ?> columnStopWest;
+    private TableColumn<PlayerAVGStats, Double> columnStopWest;
 
    /* @FXML
     private TextArea txtAreaPlayerStatsW;*/
@@ -51,19 +58,19 @@ public class FinalsController {
     private TextField txtEastWinner;
     
     @FXML
-    private TableView<?> tableEast;
+    private TableView<PlayerAVGStats> tableEast;
 
     @FXML
-    private TableColumn<?, ?> columnPlayerEast;
+    private TableColumn<PlayerAVGStats, String> columnPlayerEast;
 
     @FXML
-    private TableColumn<?, ?> columnPointsEast;
+    private TableColumn<PlayerAVGStats, Double> columnPointsEast;
 
     @FXML
-    private TableColumn<?, ?> columnAssistsEast;
+    private TableColumn<PlayerAVGStats, Double> columnAssistsEast;
 
     @FXML
-    private TableColumn<?, ?> columnStopEast;
+    private TableColumn<PlayerAVGStats, Double> columnStopEast;
 
 
    /* @FXML
@@ -78,14 +85,14 @@ public class FinalsController {
     @FXML
     void doSimulaFinals(ActionEvent event) {
     	
-    	/*txtAreaPlayerStatsE.clear();
-    	txtAreaPlayerStatsW.clear();*/
+    	
     	txtAreaResults.clear();
     	txtChamp.clear();
     	
     	Team champ = model.SimulationWinner(model.getEastWinner(), model.getWestWinner());
     	
     	txtChamp.appendText(champ.getName());
+
     	
     	for(String s : model.getResult()) {
     		txtAreaResults.appendText(s + "\n");
@@ -102,16 +109,20 @@ public class FinalsController {
         assert columnPointsWest != null : "fx:id=\"columnPointsWest\" was not injected: check your FXML file 'GoToFinals.fxml'.";
         assert columnAssistsWest != null : "fx:id=\"columnAssistsWest\" was not injected: check your FXML file 'GoToFinals.fxml'.";
         assert columnStopWest != null : "fx:id=\"columnStopWest\" was not injected: check your FXML file 'GoToFinals.fxml'.";
-        //assert txtAreaPlayerStatsW != null : "fx:id=\"txtAreaPlayerStatsW\" was not injected: check your FXML file 'GoToFinals.fxml'.";
         assert txtEastWinner != null : "fx:id=\"txtEastWinner\" was not injected: check your FXML file 'GoToFinals.fxml'.";
         assert tableEast != null : "fx:id=\"tableEast\" was not injected: check your FXML file 'GoToFinals.fxml'.";
         assert columnPlayerEast != null : "fx:id=\"columnPlayerEast\" was not injected: check your FXML file 'GoToFinals.fxml'.";
         assert columnPointsEast != null : "fx:id=\"columnPointsEast\" was not injected: check your FXML file 'GoToFinals.fxml'.";
         assert columnAssistsEast != null : "fx:id=\"columnAssistsEast\" was not injected: check your FXML file 'GoToFinals.fxml'.";
         assert columnStopEast != null : "fx:id=\"columnStopEast\" was not injected: check your FXML file 'GoToFinals.fxml'.";
-        //assert txtAreaPlayerStatsE != null : "fx:id=\"txtAreaPlayerStatsE\" was not injected: check your FXML file 'GoToFinals.fxml'.";
         assert txtChamp != null : "fx:id=\"txtChamp\" was not injected: check your FXML file 'GoToFinals.fxml'.";
         assert txtAreaResults != null : "fx:id=\"txtAreaResults\" was not injected: check your FXML file 'GoToFinals.fxml'.";
+        
+        columnPlayerWest.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, String>("Giocatore"));
+        columnPointsWest.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, Double>("Punti"));      
+        columnAssistsWest.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, Double>("Assist"));
+        columnStopWest.setCellValueFactory(new PropertyValueFactory<PlayerAVGStats, Double>("Stop"));      
+
 
     }
     
